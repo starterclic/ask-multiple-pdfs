@@ -57,6 +57,7 @@ def handle_userinput(user_question):
     else:
         st.warning('Conversation function is not initialized.')
         return
+    st.session_state.chat_history = response['chat_history']
 
     for i, message in enumerate(st.session_state.chat_history):
         if i % 2 == 0:
