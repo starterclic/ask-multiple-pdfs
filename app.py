@@ -52,8 +52,11 @@ def get_conversation_chain(vectorstore):
 
 
 def handle_userinput(user_question):
+    st.warning('Attempting to initialize st.session_state.conversation.')
     if st.session_state.conversation is not None:
         response = st.session_state.conversation({'question': user_question})
+    st.warning('st.session_state.conversation should be initialized.')
+    
     else:
         st.warning('Conversation function is not initialized.')
         return
