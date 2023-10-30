@@ -52,8 +52,11 @@ def get_conversation_chain(vectorstore):
 
 
 def handle_userinput(user_question):
-    response = st.session_state.conversation({'question': user_question})
-    st.session_state.chat_history = response['chat_history']
+    if st.session_state.conversation is not None:
+        response = st.session_state.conversation({'question': user_question})
+    else:
+        st.warning('Conversation function is not initialized.')
+        return
 
     for i, message in enumerate(st.session_state.chat_history):
         if i % 2 == 0:
